@@ -30,7 +30,7 @@ public class UserService {
         return Objects.requireNonNull(userDTOConverter.convert(user))
                 .map(userRepository::save)
                 .map(userConverter::convert)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Cannot save the entity: " + user));
     }
 
     public List<User> getUsers() {

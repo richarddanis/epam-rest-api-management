@@ -1,5 +1,6 @@
 package com.epam.www.trainin.rest.service.controller;
 
+import com.epam.www.trainin.rest.service.exception.EntityNotFoundException;
 import com.epam.www.trainin.rest.service.model.User;
 import com.epam.www.trainin.rest.service.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -54,10 +55,12 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
         try{
-            User user = userService.getUserById(id);
+            final User user = userService.getUserById(id);
             return new ResponseEntity<>(user, HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
