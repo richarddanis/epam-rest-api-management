@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+
     private Long id;
     private String userName;
 

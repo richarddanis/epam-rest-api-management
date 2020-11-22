@@ -3,6 +3,7 @@ package com.epam.www.trainin.rest.service.controller;
 import com.epam.www.trainin.rest.service.exception.EntityNotFoundException;
 import com.epam.www.trainin.rest.service.model.User;
 import com.epam.www.trainin.rest.service.service.UserService;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,8 +44,12 @@ public class UserController {
      */
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        try {
+            List<User> users = userService.getUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

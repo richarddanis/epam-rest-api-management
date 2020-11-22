@@ -20,7 +20,13 @@ public class UserDTO {
     @Column(nullable = false, name = "USER_NAME")
     private String userName;
 
-    public UserDTO(String userName) {
+    /**
+     * Default constructor for hibernate.
+     */
+    public UserDTO() { }
+
+    public UserDTO(Long id, String userName) {
+        this.id = id;
         this.userName = userName;
     }
 

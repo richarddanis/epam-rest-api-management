@@ -15,6 +15,6 @@ public class UserToUserDTOConverter implements Converter<User, Optional<UserDTO>
 
     @Override
     public Optional<UserDTO> convert(User user) {
-        return Optional.of(new UserDTO(user.getUserName()));
+        return Optional.of(new UserDTO(user.getId(), user.getUserName()));
     }
 }
